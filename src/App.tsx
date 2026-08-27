@@ -10,6 +10,7 @@ import Services from "@/components/ServicesSection";
 import Contact from "./pages/Contact";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Basmati1121 from "./pages/Basmati1121";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const App = () => (
               }
             />
 
+            <Route path="basmati-1121" element={<Basmati1121 />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

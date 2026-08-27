@@ -1,17 +1,21 @@
 import { useState } from "react";
 import { products, type Product } from "@/data/products";
 import { useCart } from "@/context/CartContext";
-import { Minus, Plus, ShoppingCart, Search } from "lucide-react";
+import { Minus, Plus, ShoppingCart, Search, ExternalLink } from "lucide-react";
 import ProductDetail from "./ProductDetail";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }: { product: Product }) => {
   const [qty, setQty] = useState(10);
   const { addToCart } = useCart();
   const [showDetail, setShowDetail] = useState(false);
+  const navigate = useNavigate();
+
+  const isBasmati1121 = product.id === "basmati-rice";
 
   return (
     <>
-      <div className="bg-card border border-border rounded-lg overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+      <div className="bg-card border border-border rounded-lg overflow-hidden group hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
         <button onClick={() => setShowDetail(true)} className="w-full text-left cursor-pointer">
           <div className="h-56 overflow-hidden">
             <img
@@ -22,7 +26,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             />
           </div>
         </button>
-        <div className="p-5">
+        <div className="p-5 flex flex-col flex-1">
           <div className="flex items-start justify-between gap-2 mb-2">
             <button onClick={() => setShowDetail(true)} className="text-left">
               <h3 className="font-heading text-lg font-semibold text-foreground leading-tight hover:text-primary transition-colors">
@@ -37,14 +41,14 @@ const ProductCard = ({ product }: { product: Product }) => {
 
           {/* Price */}
           <div className="mb-3">
-            <span className="font-heading text-xl font-bold text-primary">{product.price}</span>
+            <span className="font-heading text-xl font-bold text-foreground">{product.price}</span>
             <span className="font-body text-muted-foreground text-xs ml-2">/ {product.unit}</span>
           </div>
 
           <p className="font-body text-xs text-muted-foreground mb-4">Min. Order: {product.minOrder}</p>
 
           {/* Quantity selector */}
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-3 mb-4 mt-auto">
             <span className="font-body text-sm text-muted-foreground">Qty (MTN):</span>
             <div className="flex items-center border border-border rounded-md">
               <button
@@ -81,6 +85,16 @@ const ProductCard = ({ product }: { product: Product }) => {
           >
             <ShoppingCart className="w-4 h-4" /> Add to Cart
           </button>
+
+          {/* View All Grades — only for Basmati 1121, below Add to Cart */}
+          {isBasmati1121 && (
+            <button
+              onClick={() => navigate("/basmati-1121")}
+              className="w-full mt-2 flex items-center justify-center gap-2 border-2 border-primary text-primary py-2.5 rounded-md font-body font-bold text-sm uppercase tracking-wider hover:bg-primary hover:text-primary-foreground transition-all"
+            >
+              <ExternalLink className="w-4 h-4" /> View All Grades & Details
+            </button>
+          )}
         </div>
       </div>
 
@@ -94,8 +108,11 @@ const ProductCard = ({ product }: { product: Product }) => {
 const ProductsSection = () => {
   const [filter, setFilter] = useState<"all" | "turmeric" | "rice">("all");
   const [search, setSearch] = useState("");
-  
-  const filtered = products
+
+  // Only show main products (not the individual basmati-1121 grades)
+  const mainProducts = products.filter(p => !p.id.startsWith("basmati-1121-"));
+
+  const filtered = mainProducts
     .filter((p) => filter === "all" || p.category === filter)
     .filter((p) => search.trim() === "" || p.name.toLowerCase().includes(search.toLowerCase()) || p.description.toLowerCase().includes(search.toLowerCase()));
 
@@ -141,7 +158,7 @@ const ProductsSection = () => {
           ))}
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {filtered.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

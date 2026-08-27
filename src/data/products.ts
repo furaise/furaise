@@ -1,5 +1,6 @@
 import turmericPolished from "@/assets/turmeric-polished.jpg";
 import turmericUnpolished from "@/assets/turmeric-unpolished.jpg";
+import basmatiRice from "@/assets/basmati-rice.jpg";
 import p1 from "@/assets/p1.jpeg";
 import p2 from "@/assets/p2.jpeg";
 import p3 from "@/assets/p3.jpeg";
@@ -125,6 +126,84 @@ export const products: Product[] = [
       "Moisture controlled",
       "Bulk container supply",
       "Stable long-term supply",
+    ],
+  },
+
+  // ── Basmati 1121 Grades (linked from /basmati-1121 page) ──
+  {
+    id: "basmati-1121-white",
+    name: "1121 White / Raw",
+    description: "Unprocessed Basmati 1121 with best aroma & soft texture. Extra long grain, 8.35mm+. Most popular for fine dining & EU retail.",
+    price: "$1,060",
+    unit: "1 MT (FOB)",
+    minOrder: "1 FCL (25 MT)",
+    image: basmatiRice,
+    gallery: [basmatiRice],
+    category: "rice",
+    details: [
+      "Grain Length: 8.35mm+",
+      "Elongation: 2.5x+",
+      "Moisture: Max 12-13%",
+      "Purity: 95%+",
+      "Broken: Max 1-3%",
+      "APEDA & FDA Certified",
+    ],
+  },
+  {
+    id: "basmati-1121-steam",
+    name: "1121 Steam",
+    description: "Steamed in husk, durable white color, firm texture. Most traded Basmati grade globally for GCC & food service.",
+    price: "$1,050",
+    unit: "1 MT (FOB)",
+    minOrder: "1 FCL (25 MT)",
+    image: basmatiRice,
+    gallery: [basmatiRice],
+    category: "rice",
+    details: [
+      "Grain Length: 8.35mm+",
+      "Steamed in husk process",
+      "Moisture: Max 12-13%",
+      "Purity: 95%+",
+      "Broken: Max 1-3%",
+      "APEDA & FDA Certified",
+    ],
+  },
+  {
+    id: "basmati-1121-white-sella",
+    name: "1121 White Sella",
+    description: "Parboiled Basmati 1121, resistant to overcooking. Ideal for large-scale catering & institutions.",
+    price: "$930",
+    unit: "1 MT (FOB)",
+    minOrder: "1 FCL (25 MT)",
+    image: basmatiRice,
+    gallery: [basmatiRice],
+    category: "rice",
+    details: [
+      "Grain Length: 8.35mm+",
+      "Parboiled process",
+      "Moisture: Max 12-13%",
+      "Purity: 95%+",
+      "Broken: Max 1-3%",
+      "APEDA & FDA Certified",
+    ],
+  },
+  {
+    id: "basmati-1121-golden",
+    name: "1121 Golden Sella",
+    description: "Deep golden hue, nutty flavor, maximum shelf life. Preferred in Middle East markets for biryani.",
+    price: "$1,060",
+    unit: "1 MT (FOB)",
+    minOrder: "1 FCL (25 MT)",
+    image: basmatiRice,
+    gallery: [basmatiRice],
+    category: "rice",
+    details: [
+      "Grain Length: 8.30mm+",
+      "Golden parboiled process",
+      "Moisture: Max 12-13%",
+      "Purity: 95%+",
+      "Extended shelf life",
+      "APEDA & FDA Certified",
     ],
   },
 ];
